@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="number_button_padding_horizontal">36dp</dimen>
+    <dimen name="number_button_padding_vertical">12dp</dimen>
+    <dimen name="number_button_margin">4dp</dimen>
+    <dimen name="number_text_size">30dp</dimen>
+    <dimen name="number_button_width">90dp</dimen>
+</resources>
