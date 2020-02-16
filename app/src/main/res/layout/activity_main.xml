@@ -9,20 +9,41 @@
     android:padding="21dp">
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2 + 2 = ?"
+        android:text=""
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:textSize="36dp"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Guess the answer..."
-        android:textSize="30dp"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="wrap_content"
+            android:hint="Guess the answer..."
+            android:textSize="30dp"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"
+            android:enabled="false"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="54dp"
+            android:src="@drawable/backspace"
+            android:layout_gravity="bottom"
+            android:background="@null"/>
+
+    </LinearLayout>
+
+
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -31,7 +52,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp">
 
-        <TextView
+        <Button
             android:id="@+id/btn9"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -45,7 +66,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btn8"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -59,7 +80,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btn7"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -74,7 +95,7 @@
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
 
-        <TextView
+        <Button
             android:id="@+id/btn6"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -88,7 +109,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btn5"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -102,7 +123,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
         android:id="@+id/btn4"
             android:layout_width="@dimen/number_button_width"
         android:layout_height="wrap_content"
@@ -117,7 +138,7 @@
         android:paddingVertical="@dimen/number_button_padding_vertical"
         android:layout_margin="@dimen/number_button_margin"/>
 
-        <TextView
+        <Button
             android:id="@+id/btn3"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -131,7 +152,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
         android:id="@+id/btn2"
             android:layout_width="@dimen/number_button_width"
         android:layout_height="wrap_content"
@@ -145,7 +166,7 @@
         android:paddingHorizontal="@dimen/number_button_padding_horizontal"
         android:paddingVertical="@dimen/number_button_padding_vertical"
         android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btn1"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -160,7 +181,7 @@
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
 
-        <TextView
+        <Button
             android:id="@+id/btn0"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -174,7 +195,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btnDecimal"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -188,7 +209,7 @@
             android:paddingHorizontal="@dimen/number_button_padding_horizontal"
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
-        <TextView
+        <Button
             android:id="@+id/btnNegative"
             android:layout_width="@dimen/number_button_width"
             android:layout_height="wrap_content"
@@ -212,27 +233,36 @@
 
         <Button
             android:id="@+id/btnGenerate"
+            android:drawableTop="@drawable/plussquareregular"
+            android:drawablePadding="@dimen/drawable_image_padding"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Generate"/>
+            android:text="Generate"
+            android:padding="@dimen/button_padding"/>
 
         <Button
             android:id="@+id/btnValidate"
+            android:drawableTop="@drawable/checksquareregular"
+            android:drawablePadding="@dimen/drawable_image_padding"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Validate"/>
+            android:text="Validate"
+            android:padding="@dimen/button_padding"/>
 
         <Button
             android:id="@+id/btnScore"
+            android:drawableTop="@drawable/listsolid"
+            android:drawablePadding="@dimen/drawable_image_padding"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Score"/>
+            android:text="Score"
+            android:padding="@dimen/button_padding"/>
 
     </LinearLayout>
 
