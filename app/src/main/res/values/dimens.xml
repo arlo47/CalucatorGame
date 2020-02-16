@@ -4,7 +4,7 @@
     <dimen name="number_button_padding_vertical">12dp</dimen>
     <dimen name="number_button_margin">4dp</dimen>
     <dimen name="number_text_size">30dp</dimen>
-    <dimen name="number_button_width">90dp</dimen>
+    <dimen name="number_button_width">112dp</dimen>
     <dimen name="drawable_image_padding">6dp</dimen>
-    <dimen name="button_padding">12dp</dimen>
+    <dimen name="button_padding">16dp</dimen>
 </resources>

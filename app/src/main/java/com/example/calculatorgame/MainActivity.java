@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     AnswerList answerList = AnswerList.getInstance();
     double answer;
+    boolean placedDecimal = false;
 
     Button btn9;
     Button btn8;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnGenerate;
     Button btnValidate;
     Button btnScore;
+    Button btnDelete;
 
     EditText editTextUserInput;
     TextView textViewQuestion;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnScore = findViewById(R.id.btnScore);
         btnScore.setOnClickListener(this);
+
+        btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(this);
     }
 
     //assigns number buttons to variables + sets up event listeners
@@ -117,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String operation = String.valueOf(operand1) + " " + operator + " " + String.valueOf(operand2) + " = ?";
         textViewQuestion.setText(operation);
+
+        //re-enable btnNegative & btnDecimal
+        btnNegative.setEnabled(true);
+        btnDecimal.setEnabled(true);
     }
 
     //generates operator for question
@@ -140,6 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 answer = operand1 * operand2;
                 break;
             case 3:
+                //generate new operator equation has 0
+                if(operand1 == 0 || operand2 == 0)
+                    generateOperatorAndAnswer(operand1, operand2);
+
                 operator = "/";
                 answer = operand1 / operand2;
                 break;
@@ -180,7 +194,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String buttonText = btn.getText().toString();
 
+        //disable btnNegative after first button click
+        btnNegative.setEnabled(false);
+
+        //disable btnDecimal after used once
+        if(buttonText.equals("."))
+            btnDecimal.setEnabled(false);
+
         editTextUserInput.append(buttonText);
+    }
+
+    private void deleteCharacter() {
+
+        if(editTextUserInput.getText().toString().length() < 1)
+            return;
+
+        String userInput = editTextUserInput.getText().toString();
+        String newUserInput = userInput.substring(0, userInput.length() -1);
+        editTextUserInput.setText(newUserInput);
     }
 
     @Override
@@ -197,6 +228,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 validateInput();
             case R.id.btnScore:
                 showScore();
+                break;
+            case R.id.btnDelete:
+                deleteCharacter();
                 break;
             default:
                 Button numberBtn = (Button) v;

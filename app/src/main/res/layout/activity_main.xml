@@ -33,11 +33,12 @@
             android:textAlignment="center"
             android:enabled="false"/>
 
-        <ImageButton
+        <Button
+            android:id="@+id/btnDelete"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="54dp"
-            android:src="@drawable/backspace"
+            android:drawableLeft="@drawable/backspace"
             android:layout_gravity="bottom"
             android:background="@null"/>
 
@@ -240,7 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="Generate"
-            android:padding="@dimen/button_padding"/>
+            android:padding="@dimen/button_padding" />
 
         <Button
             android:id="@+id/btnValidate"
