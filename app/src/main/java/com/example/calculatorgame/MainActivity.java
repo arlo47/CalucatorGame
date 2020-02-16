@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnValidate = findViewById(R.id.btnValidate);
         btnValidate.setOnClickListener(this);
+        btnValidate.setEnabled(false);
 
         btnScore = findViewById(R.id.btnScore);
         btnScore.setOnClickListener(this);
@@ -119,21 +120,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Random random = new Random();
         int operand1 = random.nextInt(10);
         int operand2 = random.nextInt(10);
-        String operator = generateOperatorAndAnswer(operand1, operand2);
+
+        String operator = generateOperatorAndAnswer(operand1, operand2, 4);
 
         String operation = String.valueOf(operand1) + " " + operator + " " + String.valueOf(operand2) + " = ?";
         textViewQuestion.setText(operation);
 
-        //re-enable btnNegative & btnDecimal
         btnNegative.setEnabled(true);
         btnDecimal.setEnabled(true);
     }
 
     //generates operator for question
-    private String generateOperatorAndAnswer(int operand1, int operand2) {
+    private String generateOperatorAndAnswer(int operand1, int operand2, int randomBound) {
 
         Random random = new Random();
-        int operatorId = random.nextInt(4);
+        int operatorId = random.nextInt(randomBound);
+
         String operator = "";
 
         switch(operatorId) {
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 3:
                 //generate new operator equation has 0
                 if(operand1 == 0 || operand2 == 0)
-                    generateOperatorAndAnswer(operand1, operand2);
+                    generateOperatorAndAnswer(operand1, operand2, 3);
 
                 operator = "/";
                 answer = operand1 / operand2;
@@ -164,6 +166,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //invokes when btnValidate is hit, checks user input against answer
     private void validateInput() {
+        //stop if there is no input
+        if(editTextUserInput.getText().toString().length() < 1)
+            return;
+
         double userAnswer = Double.parseDouble(editTextUserInput.getText().toString());
         int userQuestionLengthMinusLastChar = textViewQuestion.getText().toString().length() - 1;
         String userQuestion = textViewQuestion.getText().toString().substring(0, userQuestionLengthMinusLastChar);
@@ -202,16 +208,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnDecimal.setEnabled(false);
 
         editTextUserInput.append(buttonText);
+        btnValidate.setEnabled(true);
     }
 
     private void deleteCharacter() {
 
-        if(editTextUserInput.getText().toString().length() < 1)
-            return;
+        boolean hasUserInput = editTextUserInput.getText().toString().length() > 0;
 
-        String userInput = editTextUserInput.getText().toString();
-        String newUserInput = userInput.substring(0, userInput.length() -1);
-        editTextUserInput.setText(newUserInput);
+        if(hasUserInput) {
+            String userInput = editTextUserInput.getText().toString();
+            String newUserInput = userInput.substring(0, userInput.length() -1);
+            editTextUserInput.setText(newUserInput);
+        }
+        else
+            btnValidate.setEnabled(false);
     }
 
     @Override
