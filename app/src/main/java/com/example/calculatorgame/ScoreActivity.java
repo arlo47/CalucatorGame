@@ -43,7 +43,6 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_score);
 
         initialize();
-        initializeListView(answerList.getListOfAnswers());
     }
 
     @Override
@@ -105,7 +104,7 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
                 initializeListView(answerList.getListOfAnswers());
                 break;
             case R.id.btnShow:
-                makeToast("Show", "short");
+                initializeListView(answerList.getListOfAnswers());
                 break;
             case R.id.btnBack:
                 goBack();

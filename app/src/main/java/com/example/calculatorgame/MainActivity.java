@@ -130,11 +130,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //generates a random number between 0-9, calls generateOperator() to get operator,
     // sets question string to TextView
     private void generateQuestion() {
+
+        editTextUserInput.setText(null);
+
         Random random = new Random();
         int operand1 = random.nextInt(10);
         int operand2 = random.nextInt(10);
+        String operator = "";
 
-        String operator = generateOperatorAndAnswer(operand1, operand2, 4);
+        if(operand1 == 0 || operand2 == 0)
+            operator = generateOperatorAndAnswer(operand1, operand2, 3);
+        else
+            operator = generateOperatorAndAnswer(operand1, operand2, 4);
 
         String operation = String.valueOf(operand1) + " " + operator + " " + String.valueOf(operand2) + " = ?";
         textViewQuestion.setText(operation);
@@ -165,10 +172,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 answer = operand1 * operand2;
                 break;
             case 3:
-                //generate new operator equation has 0
-                if(operand1 == 0 || operand2 == 0)
-                    generateOperatorAndAnswer(operand1, operand2, 3);
-
                 operator = "/";
                 answer = operand1 / operand2;
                 break;
