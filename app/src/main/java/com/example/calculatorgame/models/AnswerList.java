@@ -90,6 +90,12 @@ public class AnswerList implements Serializable {
         return "Total: " + totalNumberOfAnswers + " Right: " + numberOfRightAnswers + " Wrong: " + numberOfWrongAnswers;
     }
 
+    public String generatePercentage() {
+        int totalAnswers = numberOfRightAnswers + numberOfWrongAnswers;
+        double percentage = ((double)numberOfRightAnswers / (double)totalAnswers) * 100.0;
+        return (int)percentage + "%";
+    }
+
     @Override
     public String toString() {
         return "AnswerList{" +

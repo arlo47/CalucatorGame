@@ -2,13 +2,16 @@ package com.example.calculatorgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.calculatorgame.models.Answer;
@@ -23,7 +26,10 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
     AnswerList answerList = AnswerList.getInstance();
 
     ListView listViewAnswers;
+    TextView textViewScore;
+    EditText editTextRegisterName;
     Button btnShow;
+    Button btnBack;
 
     RadioButton rbtnAll;
     RadioButton rbtnRight;
@@ -39,6 +45,13 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
         initialize();
         initializeListView(answerList.getListOfAnswers());
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        textViewScore.setText(answerList.generatePercentage());
+    }
+
 
     private void initialize() {
 
@@ -59,6 +72,12 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
 
         btnShow = findViewById(R.id.btnShow);
         btnShow.setOnClickListener(this);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(this);
+
+        textViewScore = findViewById(R.id.textViewScore);
+        editTextRegisterName = findViewById(R.id.editTextRegister);
     }
 
     @Override
@@ -88,7 +107,20 @@ public class ScoreActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnShow:
                 makeToast("Show", "short");
                 break;
+            case R.id.btnBack:
+                goBack();
+                break;
         }
+    }
+
+    private void goBack() {
+        String registeredName = editTextRegisterName.getText().toString();
+
+        Intent intent = new Intent();
+        intent.putExtra("register_name", registeredName);
+
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void initializeListView(ArrayList<Answer> answerList) {

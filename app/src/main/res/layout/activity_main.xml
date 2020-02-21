@@ -9,6 +9,15 @@
     android:padding="21dp">
 
     <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Math Quiz"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
+
+    <TextView
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,19 +134,19 @@
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
         <Button
-        android:id="@+id/btn4"
+            android:id="@+id/btn4"
             android:layout_width="@dimen/number_button_width"
-        android:layout_height="wrap_content"
-        android:layout_row="1"
-        android:layout_column="2"
-        android:text="4"
-        android:textAlignment="center"
-        android:background="#CCC"
-        android:textColor="#000"
-        android:textSize="@dimen/number_text_size"
-        android:paddingHorizontal="@dimen/number_button_padding_horizontal"
-        android:paddingVertical="@dimen/number_button_padding_vertical"
-        android:layout_margin="@dimen/number_button_margin"/>
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="4"
+            android:textAlignment="center"
+            android:background="#CCC"
+            android:textColor="#000"
+            android:textSize="@dimen/number_text_size"
+            android:paddingHorizontal="@dimen/number_button_padding_horizontal"
+            android:paddingVertical="@dimen/number_button_padding_vertical"
+            android:layout_margin="@dimen/number_button_margin"/>
 
         <Button
             android:id="@+id/btn3"
@@ -154,19 +163,20 @@
             android:paddingVertical="@dimen/number_button_padding_vertical"
             android:layout_margin="@dimen/number_button_margin"/>
         <Button
-        android:id="@+id/btn2"
+            android:id="@+id/btn2"
             android:layout_width="@dimen/number_button_width"
-        android:layout_height="wrap_content"
-        android:layout_row="2"
-        android:layout_column="1"
-        android:text="2"
-        android:textAlignment="center"
-        android:background="#CCC"
-        android:textColor="#000"
-        android:textSize="@dimen/number_text_size"
-        android:paddingHorizontal="@dimen/number_button_padding_horizontal"
-        android:paddingVertical="@dimen/number_button_padding_vertical"
-        android:layout_margin="@dimen/number_button_margin"/>
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:text="2"
+            android:textAlignment="center"
+            android:background="#CCC"
+            android:textColor="#000"
+            android:textSize="@dimen/number_text_size"
+            android:paddingHorizontal="@dimen/number_button_padding_horizontal"
+            android:paddingVertical="@dimen/number_button_padding_vertical"
+            android:layout_margin="@dimen/number_button_margin"/>
+
         <Button
             android:id="@+id/btn1"
             android:layout_width="@dimen/number_button_width"
@@ -239,34 +249,25 @@
 
             <Button
                 android:id="@+id/btnGenerate"
-                android:drawableTop="@drawable/plussquareregular"
-                android:drawablePadding="@dimen/drawable_image_padding"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:text="Generate"
                 android:padding="@dimen/button_padding" />
 
             <Button
                 android:id="@+id/btnValidate"
-                android:drawableTop="@drawable/checksquareregular"
-                android:drawablePadding="@dimen/drawable_image_padding"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:text="Validate"
                 android:padding="@dimen/button_padding"/>
 
             <Button
                 android:id="@+id/btnScore"
-                android:drawableTop="@drawable/listsolid"
-                android:drawablePadding="@dimen/drawable_image_padding"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:text="Score"
                 android:padding="@dimen/button_padding"/>
 
@@ -282,7 +283,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:text="Clear"
                 android:padding="@dimen/button_padding"/>
 
@@ -291,7 +291,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:text="Finish"
                 android:padding="@dimen/button_padding"/>
 

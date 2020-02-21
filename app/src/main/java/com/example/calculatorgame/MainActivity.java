@@ -23,6 +23,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    final static int REQUEST_CODE1 = 1;
+
     AnswerList answerList = AnswerList.getInstance();
     double answer;
     boolean placedDecimal = false;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText editTextUserInput;
     TextView textViewQuestion;
+    TextView textViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initialize() {
         textViewQuestion = findViewById(R.id.question);
+        textViewTitle = findViewById(R.id.textViewTitle);
         editTextUserInput = findViewById(R.id.userInput);
 
         initializeButtonGrid();
@@ -206,7 +210,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = new Intent(this, ScoreActivity.class);
         intent.putExtra("intentExtra", bundle);
-        startActivity(intent);
+
+        startActivityForResult(intent, REQUEST_CODE1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String receivedData = (String)data.getStringExtra("register_name");
+        textViewTitle.setText(receivedData);
+
     }
 
     //invokes each time a number btn is hit, appends number to userInput

@@ -55,13 +55,6 @@ public class Answer implements Serializable {
         @Override
         public int compare(Answer a1, Answer a2) {
             return Double.compare(a1.getAnswer(), a2.getAnswer());
-//
-//            if(a1.getAnswer() < a2.getAnswer())
-//                return -1;
-//            else if(a1.getAnswer() > a2.getAnswer())
-//                return 1;
-//            else
-//                return 0;
         }
 
     }
