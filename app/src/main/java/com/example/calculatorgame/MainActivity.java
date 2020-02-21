@@ -2,6 +2,7 @@ package com.example.calculatorgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnValidate;
     Button btnScore;
     Button btnDelete;
+    Button btnClear;
+    Button btnFinish;
 
     EditText editTextUserInput;
     TextView textViewQuestion;
@@ -73,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnDelete = findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(this);
+
+        btnClear = findViewById(R.id.btnClear);
+        btnClear.setOnClickListener(this);
+
+        btnFinish = findViewById(R.id.btnFinish);
+        btnFinish.setOnClickListener(this);
     }
 
     //assigns number buttons to variables + sets up event listeners
@@ -126,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String operation = String.valueOf(operand1) + " " + operator + " " + String.valueOf(operand2) + " = ?";
         textViewQuestion.setText(operation);
 
-        btnNegative.setEnabled(true);
         btnDecimal.setEnabled(true);
+        btnNegative.setEnabled(true);
     }
 
     //generates operator for question
@@ -192,7 +201,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String result = answerList.displayAnswerList() + answerList.displayRightToWrongComparison();
 
-        makeToast(result, "short");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("bundleExtra", answerList);
+
+        Intent intent = new Intent(this, ScoreActivity.class);
+        intent.putExtra("intentExtra", bundle);
+        startActivity(intent);
     }
 
     //invokes each time a number btn is hit, appends number to userInput
@@ -200,15 +214,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String buttonText = btn.getText().toString();
 
-        //disable btnNegative after first button click
-        btnNegative.setEnabled(false);
-
         //disable btnDecimal after used once
         if(buttonText.equals("."))
             btnDecimal.setEnabled(false);
 
+        //disable btnNegative after first input
+        if(btnNegative.isEnabled())
+            btnNegative.setEnabled(false);
+
         editTextUserInput.append(buttonText);
         btnValidate.setEnabled(true);
+
     }
 
     private void deleteCharacter() {
@@ -236,17 +252,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnValidate:
                 validateInput();
+                break;
             case R.id.btnScore:
                 showScore();
                 break;
             case R.id.btnDelete:
                 deleteCharacter();
                 break;
+            case R.id.btnClear:
+                clearInput();
+                break;
+            case R.id.btnFinish:
+                endApp();
+                break;
             default:
                 Button numberBtn = (Button) v;
                 appendInputToEditText(numberBtn);
                 break;
         }
+    }
+
+    private void clearInput() {
+        editTextUserInput.setText(null);
+    }
+
+    private void endApp() {
+        finish();
     }
 
     private void makeToast(String message, String timeOut) {

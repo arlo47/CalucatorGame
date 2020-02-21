@@ -1,8 +1,10 @@
 package com.example.calculatorgame.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class AnswerList {
+public class AnswerList implements Serializable {
 
     private ArrayList<Answer> listOfAnswers;
     private int numberOfRightAnswers;
@@ -23,6 +25,28 @@ public class AnswerList {
 
     public ArrayList<Answer> getListOfAnswers() {
         return listOfAnswers;
+    }
+
+    public ArrayList<Answer> getListOfRightAnswers() {
+
+        ArrayList<Answer> listOfRightAnswers = new ArrayList<>();
+
+        for(Answer a : listOfAnswers) {
+            if(a.isRight())
+                listOfRightAnswers.add(a);
+        }
+        return listOfRightAnswers;
+    }
+
+    public ArrayList<Answer> getListOfWrongAnswers() {
+
+        ArrayList<Answer> listOfWrongAnswers = new ArrayList<>();
+
+        for(Answer a : listOfAnswers) {
+            if(!a.isRight())
+                listOfWrongAnswers.add(a);
+        }
+        return listOfWrongAnswers;
     }
 
     public void addToListOfAnswers(Answer a) {

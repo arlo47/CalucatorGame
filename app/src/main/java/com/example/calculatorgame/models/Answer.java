@@ -1,9 +1,14 @@
 package com.example.calculatorgame.models;
 
-public class Answer {
+import java.io.Serializable;
+import java.util.Comparator;
+
+public class Answer implements Serializable {
     private String question;
     private double answer;
     private boolean isRight;
+
+    public Answer() {}
 
     public Answer(String question, double answer, boolean isRight) {
         this.question = question;
@@ -44,4 +49,21 @@ public class Answer {
         else
             return question + " " + answer + ", " + " was " + result;
     }
+
+    public class AnswerCompare implements Comparator<Answer> {
+
+        @Override
+        public int compare(Answer a1, Answer a2) {
+            return Double.compare(a1.getAnswer(), a2.getAnswer());
+//
+//            if(a1.getAnswer() < a2.getAnswer())
+//                return -1;
+//            else if(a1.getAnswer() > a2.getAnswer())
+//                return 1;
+//            else
+//                return 0;
+        }
+
+    }
+
 }
